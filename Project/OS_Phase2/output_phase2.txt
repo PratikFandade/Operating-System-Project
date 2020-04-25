@@ -1,0 +1,50 @@
+*R50SR51PD50SR60PD60H  
+*R50*R50
+*R50*R50*R50
+Operation Code Error
+Job status - ID=202 TTL=25 TLL=4 TTC=13 LLC=3 IC=10 IR=$D40
+
+
+CAT CANEAT RAT
+RAT
+No error
+Job status - ID=302 TTL=13 TLL=2 TTC=13 LLC=2 IC=10 IR=HD40
+
+
+Invalid Page Fault
+Job status - ID=102 TTL=7 TLL=2 TTC=3 LLC=0 IC=2 IR=LR36
+
+
+ABCDH
+ABCD
+Time Limit Exceeded
+Job status - ID=401 TTL=9 TLL=4 TTC=9 LLC=2 IC=6 IR=GD50
+
+
+Operand Error
+Job status - ID=1503 TTL=20 TLL=10 TTC=6 LLC=0 IC=4 IR=SR7A
+
+
+Operation Code Error
+Job status - ID=1403 TTL=50 TLL=8 TTC=11 LLC=0 IC=9 IR=PA30
+
+
+Out Of Data
+Job status - ID=1403 TTL=50 TLL=8 TTC=2 LLC=0 IC=1 IR=GD30
+
+
+SHE SELLS   SEA SHELLS ON
+Time Limit Exceeded
+Job status - ID=402 TTL=4 TLL=2 TTC=4 LLC=1 IC=3 IR=LR30
+
+
+SHE SELLS   SEA SHELLS ON
+Time Limit Exceeded
+Job status - ID=403 TTL=4 TLL=2 TTC=4 LLC=1 IC=3 IR=LR30
+
+
+SHE SELLS   SEA SHELLS ON
+Time Limit Exceeded
+Job status - ID=405 TTL=3 TLL=2 TTC=3 LLC=1 IC=2 IR=PD30
+
+
