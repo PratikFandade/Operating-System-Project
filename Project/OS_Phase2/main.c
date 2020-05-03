@@ -35,7 +35,7 @@ void init_pcb()
     temp[1]=buffer[9];
     temp[2]=buffer[10];
     temp[3]=buffer[11];
-      pcb->ttl=atoi(temp);
+      pcb->ttl=atoi(temp); //converting the string to an integer
       //ttl = pcb->TTL;
       /* Extract Total buffer Limit */
     temp[0]=buffer[12];
@@ -88,7 +88,8 @@ void read()
 			ra++;
 		}while(buffer[p]!=NULL&&buffer[p]!='\n');
 
-		printf("\nMemory\n");
+		printf("\nMemory\n"); //Read next (data) card from input file 
+		//in memory locations from Real Address through RA + 9
 						for(i=sh;i<=sh+9;i++)
                         {
                             printf("M[%d]=",i);
@@ -105,7 +106,7 @@ void read()
 		else
 		{
 
-			terminate(1);
+			terminate(1); //Out of Data
 		}
 
 
@@ -115,24 +116,24 @@ void read()
 void write()
 {
     printf("\nIn Write\n");
-    SI=0;
+    SI=0; 
     IR[3]='0';
     int val=((int)IR[2] -48)*10 + ((int)IR[3] -48);
     pcb->llc++;
 		if(pcb->llc>pcb->tll)
-			terminate(2);
+			terminate(2); //Line Limit exceeded
 		else
 		{
 		int j=0,i=0;
 
-			int ra=admap(val);
-			while(i<10)
+			int ra=admap(val); //real address address mapping
+			while(i<10)// 10 words = 1 block
 			{
 
 				if(M[ra][j]!='\n'&&M[ra][j]!=NULL&&M[ra][j]!='$')
                     fputc(M[ra][j],fp1);
 				j++;
-				if(j==4)
+				if(j==4) // 1 word = 4 bytes
 				{
 					ra++;
                     i++;
@@ -249,13 +250,13 @@ int admap(int va)
 			}
 			else
             {
-                PI = 3;
+                PI = 3; //Page Fault
             }
 
             return(ra);
 }
 
-void MOS()
+void MOS() //Master Mode
 {
     printf("\nIn MOS with IR=%c%c SI=%d PI=%d TI=%d\n",IR[0],IR[1],SI,PI,TI);
 
@@ -263,11 +264,11 @@ void MOS()
 		{
 		if(TI==0)
 		{
-			if(PI==1)
-				terminate(4);
-			else if(PI==2)
-				terminate(5);
-			else if(PI==3)
+			if(PI==1) //Opeartion Error
+				terminate(4); // OP Code Error
+			else if(PI==2) // Operand Error
+				terminate(5); // Operand Code Error
+			else if(PI==3) // Page Fault
 			{
 
 
@@ -294,20 +295,20 @@ void MOS()
 
 				}
 				else
-					terminate(6);            //check here
+					terminate(6);            //Invalid Page Fault
 
 			}
 
 		}
-		else if(TI==2)
+		else if(TI==2) 
 		{
 
 			if(PI==1)
-				terminate(7);
+				terminate(7); // Time Limit Exceeded and Operation Code Error
 			else if(PI==2)
-				terminate(8);
+				terminate(8); // Time Limit Exceeded and Operand Code Error
 			else if(PI==3)
-				terminate(3);
+				terminate(3);// Time Limit Exceeded
 		}
 		}
 		else
@@ -345,7 +346,7 @@ void MOS()
 }
 
 
-void exec_user_prog()
+void exec_user_prog() //Slave Mode
 {
     int i;
     int ra = admap(IC);
